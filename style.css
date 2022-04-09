@@ -1,0 +1,253 @@
+
+/* Flexbox works in axis
+main axis (what would usually be X axis) - goes horizontally. 
+Cross axis (what would usually be Y) - goes vertically. 
+
+this can be changed!! 
+if we flip it, our main axis will be the same direction as our layout. 
+
+we style our elements based on the axis. 
+to style elements on our main axis, we would use justify-content [in our main container].
+to style on the cross axis, we use align-items [in our main container]. 
+
+*/
+
+.flexbox-container {
+display: flex; 
+/* this moves your items into one row rather than all being listed down.
+the items are also all the same height.
+if we shrink our browser - the containers will scale to fit - THIS IS GREAT FOR MOBILE */
+background-color: rgb(159, 159, 194);
+justify-content: flex-start; 
+/* justify content can have: 
+flex-start - all elements will align at the start of the main axis
+flex-end -align to the end
+center - to center elements (so there would be bigger gaps on the outside of the items
+space-between - all extra space is used equally in between our items
+space-around - would create an even amount of space on all sides of items, not just in between
+space-evenly
+*/
+
+align-items: stretch;
+/* align-items helps us style items on the cross axis (not direction of our items). 
+stretch - items will stretch to fill the most amount of space (currently - vertically)
+flex-start - keeps the size of our items
+center - to center (currently - vertically)
+baseline
+*/
+
+/* align-content: center; */
+/* align-content properties:border: flex-start
+flex-end
+center
+stretch
+space-between
+space-around;
+ */
+/* align-content is required when using multi-line containers. 
+currently, when we shrink our browser size, our containers shrink with it, but do not drop to the next line.
+They shrink to take up the amount of space needed. 
+if we add below:border: 
+flex-wrap: wrap; 
+then shrinking the browser size would move the items to the next row
+align-content property tells us how much space to leave BETWEEN LINES. (centre, flex-start or flex-end)
+the difference is more visible when you add height property to your container. [see in the container 3]
+properties are similar to justify-content, as you can also use space-between, etc. 
+ */
+
+/* if we want to change our axis and have a column view: 
+
+flex-direction: column; 
+*/
+
+}
+
+/* 
+gap property 
+The gap property explicitly controls the space between flex items. 
+It applies that spacing only between items not on the outer edges.
+
+gap: 10px; 
+gap: 10px 20px; 
+ the above shows - row-gap column gap 
+
+*/
+
+/* 
+flex-flow
+This is a shorthand for the flex-direction and flex-wrap properties, which together define the flex container’s main and cross axes. The default value is row nowrap.
+  flex-flow: column wrap;
+
+*/
+
+.flexbox-item {
+width: 200px;
+margin: 10px; 
+border: 3px solid #333;
+background-color: #dfdfdf; 
+}
+
+/* item properties are meant to override the properties (positioning/layout) of container
+ or to apply different flexible sizing */
+
+ /* as a default, our items shrink in size when reducing the size of the browser. 
+ to prevent this: 
+ flex-shrink: 0; 
+
+ when have extra space and want our items to increase in size: 
+ flex-grow: 1; 
+ if we use flex-grow on multiple items, they would go proportionately. 
+ The leftover space would be shared by a proportion of the numbers items have with flex-grow.
+
+ if we want the items to actually become double the size of another, rather than shared the empty space: 
+ flex-basis: 0; 
+
+ this tells our items where to start growing. our object would imagine that it is
+ 0 px wide when it starts adding additional space to it 
+  */
+
+  /* 
+  
+  if we want to override the cross axis of the item. 
+align-self: center; 
+this would center only 1 item in the cross axis (between top and bottom) - example on cont 2 item 2
+the default is items stretching in the full space
+
+we are able to change the order of our items within the container, but it is not recommended to do with CSS.
+Better make these changes in HTML. 
+we would need to add 
+order: 1; 
+order: 2; 
+to our items
+
+  */
+
+  /* 
+  
+  can add sizing via ratio within your container by adding flex 
+  flex: 2; 
+  example on container 3. This updates the width of each item by ratio 
+  */
+
+.flexbox-item-1 {
+    min-height: 50px;
+    flex-shrink: 0; /* this would not allow it to shrink at all */
+}
+
+.flexbox-item-2 {
+    min-height: 100px;
+    flex-grow: 1; /* this item will take all the extra space in the container*/
+}
+
+.flexbox-item-3 {
+    min-height: 150px;
+}
+
+
+
+
+.flexbox-container-2 {
+    display: flex; 
+    background-color: rgb(231, 198, 220);
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.flexbox2-item {
+    width: 200px;
+    margin: 10px; 
+    border: 3px solid rgb(231, 139, 139);
+    background-color: #f5cece; 
+}
+
+.flexbox2-item-1 {
+    min-height: 50px;
+    flex-grow: 1;
+}
+
+.flexbox2-item-2 {
+    min-height: 100px;
+    align-self: center; 
+}
+
+.flexbox2-item-3 {
+    min-height: 150px;
+    flex-grow: 2;
+}
+
+
+
+.flexbox-container-3 {
+    display: flex; 
+    flex-wrap: wrap; 
+    background-color: rgb(152, 160, 39);
+    justify-content: space-between;
+    align-items: center;
+    align-content: flex-end;
+    height: 400px;
+}
+
+.flexbox3-item {
+    width: 200px;
+    margin: 10px; 
+    border: 3px solid rgb(250, 216, 26);
+    background-color: #e4e3a5; 
+}
+
+.flexbox3-item-1 {
+    min-height: 50px;
+    flex: 2; 
+    /* flex shows the size ration of each container - width */
+}
+
+.flexbox3-item-2 {
+    min-height: 100px;
+    flex: 2; 
+}
+
+.flexbox3-item-3 {
+    min-height: 150px;
+    flex: 1; 
+}
+.flexbox3-item-4 {
+    min-height: 50px;
+    flex: 3; 
+}
+
+.flexbox3-item-5 {
+    min-height: 100px;
+    flex: 2; 
+}
+
+
+
+.flexbox-container-4 {
+    display: flex; 
+    flex-direction: column;
+    background-color: rgb(236, 187, 146);
+    height: 500px;;
+    justify-content: center; /* it centers in a column, so in the middle of container vertically, from top to bottom*/
+    align-items: center; /* this centers horizontally in the middle of the 'screen' from left to right */
+
+    
+}
+
+.flexbox4-item {
+    width: 200px;
+    margin: 10px; 
+    border: 3px solid rgb(216, 82, 20);
+    background-color: #e2e794; 
+}
+
+.flexbox4-item-1 {
+    min-height: 50px;
+}
+
+.flexbox4-item-2 {
+    min-height: 100px;
+}
+
+.flexbox4-item-3 {
+    min-height: 150px;
+}
+
